@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "./about.css";
 
 function About() {
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    let lang = localStorage.getItem("lang");
+    if (lang) {
+      i18n.changeLanguage(lang);
+    }
+  }, []);
+
   return (
     <section className="align-element py-20">
       <div className="flex flex-wrap gap-2 sm:gap-x-6 items-center justify-center">
         <h1 className="text-4xl font-bold leading-none tracking-tight sm:text-6xl">
-          We love
+          {t("weLove")}
         </h1>
         <div className="stats bg-primary shadow">
           <div className="stat">
@@ -16,12 +26,7 @@ function About() {
           </div>
         </div>
       </div>
-      <p className="mt-6 text-lg leading-8 max-w-2xl mx-auto">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore quae
-        quam blanditiis vitae, dolor non eveniet ipsum voluptatibus, quia optio
-        aut! Perferendis ipsa cumque ipsam nostrum reprehenderit ad illo sed
-        officiis ea tempore! Similique eos minima sit porro, ratione aspernatur!
-      </p>
+      <p className="mt-6 text-lg leading-8 max-w-2xl mx-auto">{t("lorem")}</p>
     </section>
   );
 }
